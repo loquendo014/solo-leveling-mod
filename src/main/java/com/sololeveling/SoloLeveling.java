@@ -22,6 +22,7 @@ public class SoloLeveling implements ModInitializer {
     @Override
     public void onInitialize() {
         Net.registerCommon();
+        ModItems.init();
 
         ServerPlayNetworking.registerGlobalReceiver(Net.ActionPayload.ID, (payload, context) -> {
             ServerPlayerEntity player = context.player();
@@ -56,18 +57,24 @@ public class SoloLeveling implements ModInitializer {
         if (a >= 1 && a <= 7) Skills.use(p, a - 1);
         else if (a >= 10 && a <= 14) Leveling.addStat(p, a - 10, 1);
         else if (a >= 15 && a <= 19) Leveling.addStat(p, a - 15, 5);
+        else if (a >= 30 && a < 30 + S.SHOP_ID.length) Market.buy(p, a - 30);
+        else if (a == 60) Market.sellAll(p);
+        else return;
+        Leveling.sync(p);
     }
 
     private static void tick(MinecraftServer server) {
         int t = server.getTicks();
         Souls.tick(server, t);
         Gates.tick(server, t);
+        Mobs.tick(server, t);
         Leveling.tickCinematics(server);
         if (t % 20 == 0) {
             Shadows.rebuild(server);
             for (ServerPlayerEntity p : server.getPlayerManager().getPlayerList()) {
                 Leveling.second(p);
                 Quests.second(p);
+                Story.second(p);
             }
         }
         if (t % 10 == 0) {

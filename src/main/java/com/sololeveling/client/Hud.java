@@ -12,23 +12,24 @@ public final class Hud {
         if (mc.options.hudHidden || mc.player == null || !ClientData.ready()) return;
         TextRenderer tr = mc.textRenderer;
 
-        int x = 6, y = 6, w = 132;
+        int x = 6, y = 6, w = 176;
         int rank = Math.min(6, Math.max(0, ClientData.get(S.RANK)));
-        ctx.fill(x - 3, y - 3, x + w + 3, y + 39, 0x90000000);
+        int stage = ClientData.get(S.STAGE);
+        boolean story = stage >= 0 && stage < S.STORY_TEXT.length;
+        boolean em = ClientData.get(S.EM_TARGET) > 0;
+        int h = 39 + (story ? 11 : 0) + (em ? 11 : 0);
+        ctx.fill(x - 3, y - 3, x + w + 3, y + h, 0x90000000);
         ctx.fill(x - 3, y - 3, x + w + 3, y - 2, 0xFF2AA8FF);
 
-        ctx.drawTextWithShadow(tr, "Nv. " + ClientData.get(S.LEVEL), x, y, 0xFFFFFF);
+        ctx.drawTextWithShadow(tr, "Nv. " + ClientData.get(S.LEVEL) + "  ⛃ " + ClientData.get(S.GOLD), x, y, 0xFFFFFF);
         String rk = "Rango " + S.RANKS[rank];
         ctx.drawTextWithShadow(tr, rk, x + w - tr.getWidth(rk), y, S.RANK_COLORS[rank]);
 
-        // XP
         int xp = ClientData.get(S.XP), need = Math.max(1, ClientData.get(S.NEED));
         bar(ctx, x, y + 12, w, 4, xp / (float) need, 0xFF3CD65A);
-        // Maná
         int mana = ClientData.get(S.MANA), mmax = Math.max(1, ClientData.get(S.MMAX));
         bar(ctx, x, y + 20, w, 4, mana / (float) mmax, 0xFF3C8CFF);
-        String ms = "✦ " + mana + "/" + mmax;
-        ctx.drawTextWithShadow(tr, ms, x, y + 27, 0x7FB8FF);
+        ctx.drawTextWithShadow(tr, "✦ " + mana + "/" + mmax, x, y + 27, 0x7FB8FF);
 
         int pts = ClientData.get(S.PTS);
         if (pts > 0) {
@@ -37,6 +38,17 @@ public final class Hud {
         } else if (ClientData.get(S.LEVEL) >= S.SKILL_LEVEL[3]) {
             String ss = "☗ " + ClientData.get(S.SHAD) + "/" + ClientData.get(S.SHADMAX);
             ctx.drawTextWithShadow(tr, ss, x + w - tr.getWidth(ss), y + 27, 0xC77DFF);
+        }
+        int ly = y + 38;
+        if (story) {
+            int target = S.STORY_TARGET[stage];
+            String s = "◆ " + S.STORY_TEXT[stage] + " (" + Math.min(ClientData.get(S.SPROG), target) + "/" + target + ")";
+            ctx.drawTextWithShadow(tr, tr.trimToWidth(s, w), x, ly, 0xFFD27F);
+            ly += 11;
+        }
+        if (em) {
+            String s = "⚠ Emergencia " + ClientData.get(S.EM_PROG) + "/" + ClientData.get(S.EM_TARGET) + " · " + ClientData.get(S.EM_LEFT) + " s";
+            ctx.drawTextWithShadow(tr, s, x, ly, 0xFF5555);
         }
     }
 

@@ -6,11 +6,14 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+
+import java.util.Set;
 
 public final class Events {
 
@@ -18,7 +21,6 @@ public final class Events {
         Entity attacker = source.getAttacker();
         if (attacker == null) return true;
         if (Shadows.isShadow(victim)) {
-            // Ni los jugadores ni otras sombras dañan a las sombras
             if (attacker instanceof PlayerEntity || Shadows.isShadow(attacker)) return false;
         }
         if (victim instanceof PlayerEntity && Shadows.isShadow(attacker)) return false;
@@ -51,26 +53,36 @@ public final class Events {
 
         PlayerData d = DataState.of(player);
         EntityType<?> type = entity.getType();
-        boolean monster = entity instanceof Monster;
+        Set<String> tags = entity.getCommandTags();
+        boolean boss = tags.contains("sl_boss");
 
-        if (monster) {
+        if (entity instanceof Monster) {
+            boolean magic = tags.contains("sl_gate_mob") || tags.contains("sl_magic");
             int xp = 12 + d.level / 4;
             if (!direct) xp = xp * 2 / 3;
-            if (entity.getCommandTags().contains("sl_gate_mob")) xp += 10;
+            if (magic) xp += 10;
             if (type == EntityType.WITHER || type == EntityType.ENDER_DRAGON || type == EntityType.WARDEN || type == EntityType.ELDER_GUARDIAN) {
                 xp += 600;
-                Fx.msg(player, Text.literal("¡Has derrotado a un ser legendario! +600 XP").formatted(Formatting.GOLD));
+                d.gold += 1000;
+                Fx.msg(player, Text.literal("¡Has derrotado a un ser legendario! +600 XP, +1000 de oro").formatted(Formatting.GOLD));
+            }
+            int gold = 2 + d.rank() + w.getRandom().nextInt(4);
+            if (magic) gold *= 2;
+            if (boss) gold += 150 * (d.rank() + 1);
+            d.gold += gold;
+            if (magic && w.getRandom().nextInt(100) < 35) entity.dropItem(ModItems.MANA_STONE);
+            if (boss) {
+                entity.dropStack(new ItemStack(ModItems.ESSENCE_STONE, 1 + w.getRandom().nextInt(2)));
+                if (w.getRandom().nextInt(100) < 30) entity.dropItem(ModItems.POWER_FRAGMENT);
+                Story.progress(player, 4, 1);
             }
             if (direct) d.qKills++;
+            Story.progress(player, 0, 1);
             Leveling.addXp(player, xp);
         }
 
-        // Alma para extraer (requiere la clase Nigromante: nivel 20)
         String name = Shadows.EXTRACTABLE.get(type);
-        if (name != null && d.level >= S.SKILL_LEVEL[3]) {
-            boolean elite = entity.getCommandTags().contains("sl_boss");
-            Souls.add(w, entity.getPos(), type, name, elite);
-        }
+        if (name != null && d.level >= S.SKILL_LEVEL[3]) Souls.add(w, entity.getPos(), type, name, boss);
     }
 
     private Events() {}

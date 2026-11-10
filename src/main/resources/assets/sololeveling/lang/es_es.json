@@ -7,5 +7,20 @@
   "key.sololeveling.skill4": "Habilidad: ¡Levántate! (agachado: reunir)",
   "key.sololeveling.skill5": "Habilidad: Autoridad del Gobernante",
   "key.sololeveling.skill6": "Habilidad: Intercambio de Sombras",
-  "key.sololeveling.skill7": "Habilidad: Dominio del Monarca"
+  "key.sololeveling.skill7": "Habilidad: Dominio del Monarca",
+  "key.sololeveling.shop": "Tienda del Sistema",
+  "item.sololeveling.mana_stone": "Piedra de Maná",
+  "item.sololeveling.essence_stone": "Piedra de Esencia",
+  "item.sololeveling.health_potion": "Poción de Curación",
+  "item.sololeveling.mana_potion": "Poción de Maná",
+  "item.sololeveling.elixir": "Elixir de la Vida",
+  "item.sololeveling.return_stone": "Piedra de Retorno",
+  "item.sololeveling.gate_key": "Llave de Mazmorra",
+  "item.sololeveling.random_box": "Caja Aleatoria",
+  "item.sololeveling.power_fragment": "Fragmento de Poder",
+  "item.sololeveling.kasaka_fang": "Colmillo Venenoso de Kasaka",
+  "item.sololeveling.knight_killer": "Asesina de Caballeros",
+  "item.sololeveling.baruka_dagger": "Daga de Baruka",
+  "item.sololeveling.demon_king_dagger": "Daga del Rey Demonio",
+  "item.sololeveling.kamish_wrath": "Ira de Kamish"
 }

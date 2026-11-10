@@ -279,6 +279,15 @@ public final class Leveling {
         a[S.SHADMAX] = d.shadowMax();
         for (int i = 0; i < 7; i++) a[S.CD + i] = Skills.cooldownLeft(p, i);
         a[S.HP] = (int) p.getMaxHealth();
+        a[S.GOLD] = d.gold;
+        a[S.STAGE] = d.stage;
+        a[S.SPROG] = d.stage < S.STORY_TYPE.length && S.STORY_TYPE[d.stage] == 1 ? d.level : d.stageProg;
+        int[] em = Story.emergency(p);
+        if (em != null) {
+            a[S.EM_LEFT] = em[0];
+            a[S.EM_PROG] = em[1];
+            a[S.EM_TARGET] = em[2];
+        }
         ServerPlayNetworking.send(p, new Net.SyncPayload(a));
     }
 

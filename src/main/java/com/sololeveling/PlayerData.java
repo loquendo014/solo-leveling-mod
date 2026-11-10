@@ -6,6 +6,7 @@ public class PlayerData {
     public int mana = 100;
     public int questDay = -1, questDone = 0, qMoveBase = 0, qJumpBase = 0, qKills = 0, qPlay = 0;
     public int awakened = 0;
+    public int gold = 0, stage = 0, stageProg = 0;
 
     public int need() {
         return 30 + level * 20 + level * level / 2;
@@ -25,7 +26,7 @@ public class PlayerData {
 
     public int[] toArray() {
         return new int[]{level, xp, points, str, vit, agi, per, intel, mana,
-                questDay, questDone, qMoveBase, qJumpBase, qKills, qPlay, awakened};
+                questDay, questDone, qMoveBase, qJumpBase, qKills, qPlay, awakened, gold, stage, stageProg};
     }
 
     public static PlayerData fromArray(int[] a) {
@@ -35,6 +36,7 @@ public class PlayerData {
         d.str = a[3]; d.vit = a[4]; d.agi = a[5]; d.per = a[6]; d.intel = a[7];
         d.mana = a[8]; d.questDay = a[9]; d.questDone = a[10]; d.qMoveBase = a[11];
         d.qJumpBase = a[12]; d.qKills = a[13]; d.qPlay = a[14]; d.awakened = a[15];
+        if (a.length >= 19) { d.gold = a[16]; d.stage = a[17]; d.stageProg = a[18]; }
         return d;
     }
 }

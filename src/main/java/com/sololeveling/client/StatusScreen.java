@@ -25,6 +25,9 @@ public class StatusScreen extends Screen {
     protected void init() {
         left = (width - PW) / 2;
         top = (height - PH) / 2;
+        addDrawableChild(ButtonWidget.builder(Text.literal("Tienda"), b -> {
+            if (client != null) client.setScreen(new ShopScreen());
+        }).dimensions(left + PW - 62, top + 5, 52, 14).build());
         for (int i = 0; i < 5; i++) {
             final int stat = i;
             int y = top + 96 + i * 15;
@@ -63,6 +66,7 @@ public class StatusScreen extends Screen {
         int x = left + 12;
 
         ctx.drawCenteredTextWithShadow(textRenderer, Text.literal("⟦ ESTADO ⟧"), width / 2, top + 9, 0x55D8FF);
+        ctx.drawTextWithShadow(textRenderer, "Oro: " + ClientData.get(S.GOLD), x, top + 9, 0xFFD700);
         String name = client != null && client.player != null ? client.player.getName().getString() : "Jugador";
         ctx.drawTextWithShadow(textRenderer, "Nombre: " + name, x, top + 30, 0xFFFFFF);
         ctx.drawTextWithShadow(textRenderer, "Nivel: " + lvl, x, top + 42, 0xFFFFFF);

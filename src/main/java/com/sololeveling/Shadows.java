@@ -38,6 +38,7 @@ import java.util.*;
 public final class Shadows {
 
     public static final String TAG = "sl_shadow";
+    private static final String[] COMMANDERS = {"Igris", "Tusk", "Iron", "Tank", "Kaisel", "Greed", "Beru", "Bellion"};
     public static final String OWNER_PREFIX = "sl_owner_";
     private static final Identifier ID_HP = Identifier.of(SoloLeveling.MOD, "shadow_health");
     private static final Identifier ID_ATK = Identifier.of(SoloLeveling.MOD, "shadow_attack");
@@ -268,7 +269,10 @@ public final class Shadows {
             ServerWorld w = p.getServerWorld();
             int chance = 45 + d.level / 2 - (s.elite ? 25 : 0);
             if (p.getRandom().nextInt(100) < chance) {
-                if (raise(p, s)) count++;
+                if (raise(p, s)) {
+                    count++;
+                    Story.progress(p, 3, 1);
+                }
                 Souls.remove(s);
             } else {
                 s.tries++;
@@ -299,7 +303,8 @@ public final class Shadows {
         m.setPersistent();
         m.setCanPickUpLoot(false);
         String prefix = s.elite ? "Comandante" : "Sombra";
-        m.setCustomName(Text.literal(prefix + " · " + s.name).formatted(Formatting.DARK_PURPLE, Formatting.BOLD));
+        String shown = s.elite ? COMMANDERS[p.getRandom().nextInt(COMMANDERS.length)] : s.name;
+        m.setCustomName(Text.literal(prefix + " · " + shown).formatted(Formatting.DARK_PURPLE, Formatting.BOLD));
 
         ItemStack helmet = new ItemStack(Items.LEATHER_HELMET);
         helmet.set(DataComponentTypes.DYED_COLOR, new DyedColorComponent(0x141414, false));
@@ -340,7 +345,7 @@ public final class Shadows {
         Fx.part(w, ParticleTypes.LARGE_SMOKE, s.pos.x, s.pos.y + 0.5, s.pos.z, 30, 0.5, 0.5, 0.5, 0.02);
         Fx.sound(w, s.pos.x, s.pos.y, s.pos.z, SoundEvents.BLOCK_RESPAWN_ANCHOR_CHARGE, 1f, 0.6f);
         Fx.msg(p, Text.literal("¡Extracción exitosa! ").formatted(Formatting.LIGHT_PURPLE, Formatting.BOLD)
-                .append(Text.literal(prefix + " · " + s.name).formatted(Formatting.DARK_PURPLE))
+                .append(Text.literal(prefix + " · " + shown).formatted(Formatting.DARK_PURPLE))
                 .append(Text.literal(" se une a tu ejército.").formatted(Formatting.GRAY)));
         return true;
     }

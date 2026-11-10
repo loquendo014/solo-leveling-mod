@@ -229,6 +229,7 @@ public final class Gates {
             MobEntity m = spawnMob(w, pool[RNG.nextInt(pool.length)], 3, 9);
             if (m == null) continue;
             buff(m, HP_MUL[gate.rank], ATK_MUL[gate.rank]);
+            Mobs.decorate(m);
             gate.mobs.add(m.getUuid());
         }
         gate.bar.setName(Text.literal("⚔ Mazmorra de Rango ").formatted(Formatting.WHITE)
@@ -355,6 +356,8 @@ public final class Gates {
         int pts = r + 1;
         for (ServerPlayerEntity p : nearby(w, 64)) {
             DataState.of(p).points += pts;
+            DataState.of(p).gold += (r + 1) * 120;
+            Story.progress(p, 2, 1);
             Fx.title(p, Text.literal("MAZMORRA COMPLETADA").formatted(Formatting.GOLD, Formatting.BOLD),
                     Text.literal("+" + xp + " XP · +" + pts + " puntos").formatted(Formatting.YELLOW), 10, 70, 20);
             Fx.sound(p, SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, 1f, 1f);

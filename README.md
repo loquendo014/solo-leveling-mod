@@ -32,3 +32,10 @@ Conviértete en el **Jugador**. Mod de Fabric para Minecraft 1.21.1 inspirado en
 ## Comandos
 - `/sistema` – estado en el chat.
 - `/sistema admin xp <n>` · `puntos <n>` · `puerta` · `puertas activar|desactivar|intervalo <min>` · `reiniciar` (requiere permisos de operador).
+
+## Novedades 1.1
+- **Objetos**: piedras de maná y esencia, pociones, elixir, Piedra de Retorno, Llave de Mazmorra, Caja Aleatoria, Fragmento de Poder y 5 dagas con efectos.
+- **Oro y Tienda del Sistema** [U]: compra objetos y vende piedras. **Mercader de la Asociación** ambulante.
+- **Bestias mágicas**: variantes con nombre y tamaño propio en mazmorras y manadas nocturnas.
+- **Misiones principales** (12 etapas con recompensas) y **misiones de emergencia**.
+- Los jefes extraídos se convierten en comandantes con nombre propio.

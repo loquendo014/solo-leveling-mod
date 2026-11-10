@@ -13,6 +13,7 @@ import org.lwjgl.glfw.GLFW;
 public class SoloLevelingClient implements ClientModInitializer {
 
     public static KeyBinding STATUS;
+    public static KeyBinding SHOP;
     public static final KeyBinding[] SKILLS = new KeyBinding[7];
     private static final int[] DEFAULT_KEYS = {GLFW.GLFW_KEY_G, GLFW.GLFW_KEY_H, GLFW.GLFW_KEY_J, GLFW.GLFW_KEY_R,
             GLFW.GLFW_KEY_Y, GLFW.GLFW_KEY_B, GLFW.GLFW_KEY_N};
@@ -21,6 +22,8 @@ public class SoloLevelingClient implements ClientModInitializer {
     public void onInitializeClient() {
         STATUS = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.sololeveling.status",
                 InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_K, "category.sololeveling"));
+        SHOP = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.sololeveling.shop",
+                InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_U, "category.sololeveling"));
         for (int i = 0; i < 7; i++) {
             SKILLS[i] = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.sololeveling.skill" + (i + 1),
                     InputUtil.Type.KEYSYM, DEFAULT_KEYS[i], "category.sololeveling"));
@@ -35,6 +38,9 @@ public class SoloLevelingClient implements ClientModInitializer {
             if (client.player == null) return;
             while (STATUS.wasPressed()) {
                 if (client.currentScreen == null) client.setScreen(new StatusScreen());
+            }
+            while (SHOP.wasPressed()) {
+                if (client.currentScreen == null) client.setScreen(new ShopScreen());
             }
             for (int i = 0; i < 7; i++) {
                 while (SKILLS[i].wasPressed()) {

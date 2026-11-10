@@ -7,7 +7,7 @@ public final class S {
             MANA = 9, MMAX = 10, RANK = 11,
             QDIST = 12, QKILL = 13, QJUMP = 14, QDONE = 15,
             SHAD = 16, SHADMAX = 17, CD = 18, // CD .. CD+6
-            HP = 25, SIZE = 26;
+            HP = 25, GOLD = 26, STAGE = 27, SPROG = 28, EM_LEFT = 29, EM_PROG = 30, EM_TARGET = 31, SIZE = 32;
 
     // Objetivos de la misión diaria
     public static final int Q_DIST = 1000, Q_KILL = 20, Q_JUMP = 100;
@@ -31,6 +31,22 @@ public final class S {
         if (level >= 10) return 1;
         return 0;
     }
+
+    // Misiones principales. Tipos: 0 bajas, 1 nivel, 2 puertas, 3 sombras, 4 jefes
+    public static final String[] STORY_TEXT = {"Derrota a 10 monstruos", "Alcanza el nivel 5", "Conquista una Puerta",
+            "Alcanza el nivel 20", "Extrae tu primera sombra", "Derrota a 100 monstruos", "Conquista 3 Puertas",
+            "Extrae 5 sombras", "Derrota a 5 jefes", "Alcanza el nivel 60", "Conquista 10 Puertas", "Alcanza el nivel 100"};
+    public static final int[] STORY_TYPE = {0, 1, 2, 1, 3, 0, 2, 3, 4, 1, 2, 1};
+    public static final int[] STORY_TARGET = {10, 5, 1, 20, 1, 100, 3, 5, 5, 60, 10, 100};
+
+    // Tienda del Sistema
+    public static final String[] SHOP_ID = {"health_potion", "mana_potion", "elixir", "return_stone", "gate_key", "random_box",
+            "power_fragment", "kasaka_fang", "knight_killer", "baruka_dagger", "demon_king_dagger", "kamish_wrath"};
+    public static final String[] SHOP_NAME = {"Poción de Curación", "Poción de Maná", "Elixir de la Vida", "Piedra de Retorno",
+            "Llave de Mazmorra", "Caja Aleatoria", "Fragmento de Poder", "Colmillo Venenoso de Kasaka", "Asesina de Caballeros",
+            "Daga de Baruka", "Daga del Rey Demonio", "Ira de Kamish"};
+    public static final int[] SHOP_PRICE = {40, 40, 400, 120, 250, 150, 1500, 600, 1800, 4500, 12000, 40000};
+    public static final int[] SHOP_LEVEL = {1, 1, 10, 1, 5, 1, 10, 5, 20, 40, 60, 90};
 
     private S() {}
 }
