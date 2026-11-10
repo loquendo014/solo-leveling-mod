@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "sololeveling",
+  "version": "${version}",
+  "name": "Solo Leveling: El Sistema",
+  "description": "Conviértete en el Jugador: niveles, estadísticas, habilidades, misiones diarias, Puertas con mazmorras y tu propio ejército de sombras.",
+  "authors": ["Claude"],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.sololeveling.SoloLeveling"],
+    "client": ["com.sololeveling.client.SoloLevelingClient"]
+  },
+  "mixins": ["sololeveling.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
