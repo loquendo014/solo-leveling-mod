@@ -22,5 +22,15 @@
   "item.sololeveling.knight_killer": "Asesina de Caballeros",
   "item.sololeveling.baruka_dagger": "Daga de Baruka",
   "item.sololeveling.demon_king_dagger": "Daga del Rey Demonio",
-  "item.sololeveling.kamish_wrath": "Ira de Kamish"
+  "item.sololeveling.kamish_wrath": "Ira de Kamish",
+  "entity.sololeveling.ant": "Hormiga Mutante",
+  "item.sololeveling.ant_spawn_egg": "Huevo de Hormiga Mutante",
+  "entity.sololeveling.ant_king": "Rey Hormiga",
+  "item.sololeveling.ant_king_spawn_egg": "Huevo de Rey Hormiga",
+  "entity.sololeveling.cerberus": "Cerbero",
+  "item.sololeveling.cerberus_spawn_egg": "Huevo de Cerbero",
+  "entity.sololeveling.stone_golem": "Coloso de Piedra",
+  "item.sololeveling.stone_golem_spawn_egg": "Huevo de Coloso de Piedra",
+  "entity.sololeveling.blood_knight": "Caballero Rojo Sangre",
+  "item.sololeveling.blood_knight_spawn_egg": "Huevo de Caballero Rojo Sangre"
 }

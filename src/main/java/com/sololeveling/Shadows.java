@@ -59,6 +59,11 @@ public final class Shadows {
         EXTRACTABLE.put(EntityType.PILLAGER, "Saqueador");
         EXTRACTABLE.put(EntityType.RAVAGER, "Devastador");
         EXTRACTABLE.put(EntityType.BLAZE, "Blaze");
+        EXTRACTABLE.put(ModEntities.ANT, "Hormiga Soldado");
+        EXTRACTABLE.put(ModEntities.ANT_KING, "Beru");
+        EXTRACTABLE.put(ModEntities.CERBERUS, "Cerbero");
+        EXTRACTABLE.put(ModEntities.STONE_GOLEM, "Coloso");
+        EXTRACTABLE.put(ModEntities.BLOOD_KNIGHT, "Igris");
     }
 
     /** Caché reconstruida cada segundo: dueño -> sombras cargadas. */

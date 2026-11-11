@@ -7,6 +7,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterials;
 import net.minecraft.item.tooltip.TooltipType;
@@ -55,6 +56,11 @@ public final class ModItems {
         reg("baruka_dagger", new Dagger(2, 7, "Hielo: ralentiza mucho."));
         DEMON_DAGGER = reg("demon_king_dagger", new Dagger(3, 10, "Marchita y quema."));
         reg("kamish_wrath", new Dagger(4, 16, "La daga más poderosa. Marchita y te regenera."));
+        reg("ant_spawn_egg", new SpawnEggItem(ModEntities.ANT, 0x2b1d16, 0xff2a1a, new Item.Settings()));
+        reg("ant_king_spawn_egg", new SpawnEggItem(ModEntities.ANT_KING, 0x24182e, 0xd8c070, new Item.Settings()));
+        reg("cerberus_spawn_egg", new SpawnEggItem(ModEntities.CERBERUS, 0x26242c, 0xff4a1a, new Item.Settings()));
+        reg("stone_golem_spawn_egg", new SpawnEggItem(ModEntities.STONE_GOLEM, 0x7a7a7e, 0x3be8ff, new Item.Settings()));
+        reg("blood_knight_spawn_egg", new SpawnEggItem(ModEntities.BLOOD_KNIGHT, 0xa01c1c, 0xc0c0c8, new Item.Settings()));
 
         Registry.register(Registries.ITEM_GROUP, Identifier.of(SoloLeveling.MOD, "main"), FabricItemGroup.builder()
                 .icon(() -> new ItemStack(DEMON_DAGGER))

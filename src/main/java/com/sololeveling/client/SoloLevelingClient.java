@@ -51,6 +51,7 @@ public class SoloLevelingClient implements ClientModInitializer {
             }
         });
 
+        ModelDefs.registerAll();
         HudRenderCallback.EVENT.register((ctx, tickCounter) -> Hud.render(ctx));
     }
 }

@@ -37,10 +37,10 @@ public final class Mobs {
     private static final EntityType<?>[][] PACKS = {
             {EntityType.ZOMBIE, EntityType.SILVERFISH},
             {EntityType.ZOMBIE, EntityType.SPIDER, EntityType.SILVERFISH},
-            {EntityType.STRAY, EntityType.SPIDER, EntityType.VINDICATOR},
-            {EntityType.VINDICATOR, EntityType.WITHER_SKELETON, EntityType.PIGLIN_BRUTE},
+            {EntityType.STRAY, ModEntities.ANT, EntityType.VINDICATOR},
+            {ModEntities.ANT, EntityType.WITHER_SKELETON, EntityType.PIGLIN_BRUTE},
             {EntityType.WITHER_SKELETON, EntityType.PIGLIN_BRUTE, EntityType.BLAZE},
-            {EntityType.PIGLIN_BRUTE, EntityType.WITHER_SKELETON, EntityType.RAVAGER},
+            {ModEntities.ANT, ModEntities.BLOOD_KNIGHT, ModEntities.CERBERUS},
     };
 
     private static void def(EntityType<?> t, String name, double scale) {
@@ -103,7 +103,7 @@ public final class Mobs {
         EntityType<?> type = PACKS[rank][RNG.nextInt(PACKS[rank].length)];
         double a = RNG.nextDouble() * Math.PI * 2, dist = 18 + RNG.nextInt(10);
         int bx = (int) Math.floor(p.getX() + Math.cos(a) * dist), bz = (int) Math.floor(p.getZ() + Math.sin(a) * dist);
-        int n = type == EntityType.RAVAGER ? 1 : 2 + RNG.nextInt(3);
+        int n = type == EntityType.RAVAGER || type == ModEntities.BLOOD_KNIGHT || type == ModEntities.CERBERUS ? 1 : 2 + RNG.nextInt(3);
         for (int i = 0; i < n; i++) {
             int x = bx + RNG.nextInt(5) - 2, z = bz + RNG.nextInt(5) - 2;
             int y = w.getTopY(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z);

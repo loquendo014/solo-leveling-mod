@@ -22,6 +22,7 @@ public class SoloLeveling implements ModInitializer {
     @Override
     public void onInitialize() {
         Net.registerCommon();
+        ModEntities.init();
         ModItems.init();
 
         ServerPlayNetworking.registerGlobalReceiver(Net.ActionPayload.ID, (payload, context) -> {
@@ -37,7 +38,12 @@ public class SoloLeveling implements ModInitializer {
         });
         ServerTickEvents.END_SERVER_TICK.register(SoloLeveling::tick);
 
-        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> Leveling.onJoin(handler.getPlayer()));
+        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
+            Leveling.onJoin(handler.getPlayer());
+            Gates.onJoin(handler.getPlayer());
+        });
+        net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents.BEFORE.register((world, player, pos, state, be) ->
+                !Gates.isDungeon(world) || player.isCreative());
         ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
             Leveling.applyStats(newPlayer);
             newPlayer.setHealth(newPlayer.getMaxHealth());

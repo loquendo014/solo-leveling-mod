@@ -39,3 +39,8 @@ Conviértete en el **Jugador**. Mod de Fabric para Minecraft 1.21.1 inspirado en
 - **Bestias mágicas**: variantes con nombre y tamaño propio en mazmorras y manadas nocturnas.
 - **Misiones principales** (12 etapas con recompensas) y **misiones de emergencia**.
 - Los jefes extraídos se convierten en comandantes con nombre propio.
+
+## Novedades 1.2
+- **Bestias con modelo 3D propio y animado**: Hormiga Mutante, Rey Hormiga (alado, invoca hormigas), Cerbero (tres cabezas, aliento de fuego), Coloso de Piedra (golpe sísmico) y Caballero Rojo Sangre (embestida). Huevos de spawn en la pestaña creativa.
+- **Mapas de mazmorra**: cada Puerta te transporta a una arena construida en la dimensión de mazmorras, con 6 temáticas según el rango (Cripta de Piedra, Templo del Desierto, Caverna Helada, Abismo de Pizarra, Fortaleza Infernal, Torre del Demonio). Al vencer al jefe se abre un portal de salida que te devuelve a donde estabas.
+- Nuevos jefes: Coloso de Piedra (D), Igris el Rojo Sangre (B), Cerbero (A), Rey Hormiga (S). Extráelos para conseguir a Igris o a Beru en tu ejército.

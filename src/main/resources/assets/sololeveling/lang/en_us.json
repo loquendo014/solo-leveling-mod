@@ -22,5 +22,15 @@
   "item.sololeveling.knight_killer": "Asesina de Caballeros",
   "item.sololeveling.baruka_dagger": "Daga de Baruka",
   "item.sololeveling.demon_king_dagger": "Daga del Rey Demonio",
-  "item.sololeveling.kamish_wrath": "Ira de Kamish"
+  "item.sololeveling.kamish_wrath": "Ira de Kamish",
+  "entity.sololeveling.ant": "Mutant Ant",
+  "item.sololeveling.ant_spawn_egg": "Mutant Ant Spawn Egg",
+  "entity.sololeveling.ant_king": "Ant King",
+  "item.sololeveling.ant_king_spawn_egg": "Ant King Spawn Egg",
+  "entity.sololeveling.cerberus": "Cerberus",
+  "item.sololeveling.cerberus_spawn_egg": "Cerberus Spawn Egg",
+  "entity.sololeveling.stone_golem": "Stone Colossus",
+  "item.sololeveling.stone_golem_spawn_egg": "Stone Colossus Spawn Egg",
+  "entity.sololeveling.blood_knight": "Blood-Red Knight",
+  "item.sololeveling.blood_knight_spawn_egg": "Blood-Red Knight Spawn Egg"
 }
